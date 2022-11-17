@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Book title goes in these h1 tags -->
+                <h1 class="book-title">{{ book.title }}</h1>
+                <!-- Book author goes before the | the bookt's uploaded date goes after -->
+                <p class="book-subtitle">{{ book.author }} | {{ book.uploaded_on }}</p>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                {% if "placeholder" in book.cover_image.url %}
+                <img src="" width="100%">
+                {% else %}
+                <img src="" width="100%">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <!-- The book summary goes inside the card-text. -->
+                <!-- Use the | safe filter inside the template tags -->
+                <div class="card-text">
+                    {{ book.summary | safe }}
+                </div>
+                <div class="row">
+
+                    <div class="col-1">
+                        <!-- The number of likes goes before the closing strong tag -->
+                        <strong class="text-secondary"><i class="far fa-heart"></i> </strong>
+                    </div>
+                    <div class="col-1">
+                        {% with reviews.count as total_reviews %}
+                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                            <!-- Our total_reviews variable goes before the closing strong tag -->
+                        </strong>
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>Reviews:</h3>
+            <div class="card-body">
+                <!-- We want a for loop inside the tags to iterate through each review in reviews -->
+                {% for review in reviews %}
+                <div class="reviewss" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        <!-- The reviewer's name goes here. Check the model if you're not sure what that is -->
+                        {{ review.name }}
+                        <span class=" text-muted font-weight-normal">
+                            <!-- The review's uploaded date goes here -->
+                            {{ review.uploaded_on}}
+                        </span> wrote:
+                    </p>
+                    <!-- The body of the review goes before the | -->
+                    {{  review.body | linebreaks }}
+                </div>
+                <!-- Our for loop ends here -->
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                <!-- For later -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
