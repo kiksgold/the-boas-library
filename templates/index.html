@@ -23,7 +23,7 @@
                                         <p class="author">Author: {{ book.author }}</p>
                                     </div>
                                 </div>
-                                <a href="#" class="book-link">
+                                <a href="{% url 'book_detail' book.slug %}" class="book-link">
                                     <h2 class="card-title">{{ book.title }}</h2>
                                     <div class="card-text">{{ book.summary | safe }}</div>
                                 </a>
