@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'library',
+    'catalogue',
 ]
 
 SITE_ID = 1
@@ -57,6 +59,8 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CRISRPY_TEMPLATE_PACK = 'bootsrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

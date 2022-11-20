@@ -48,10 +48,11 @@ class Review(models.Model):
 
 
 class BookInstance(models.Model):
-    # Model representing a specific copy of a book (i.e. that can be borrowed from the library).
+    # Model representing a specific book that can be borrowed from the library.
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
     book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
     due_back = models.DateField(null=True, blank=True)
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('m', 'Maintenance'),
